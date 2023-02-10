@@ -1,0 +1,198 @@
+$basefontsize: 14px;
+$containerwidth:1200px;
+//breakpoints
+$tablets:768px;
+$phones: 480px;
+$Iphones: 376px;
+
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+  body,
+  html {
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Inter', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #262626;
+  }
+
+  @for $i from 1 through 6{
+    h#{$i}{
+        margin: 0;
+        font-weight: normal;
+    }
+  }
+  
+  .wrapper {
+    overflow: hidden;
+    min-height: 100%;
+    position: relative;
+  }
+
+  .x-container{
+    width: 1200px;
+    margin: 0 auto;
+  }
+  
+  
+  .fullscreen-section {
+    height: 100vh;
+    min-height: 650px;
+  }
+  
+  button {
+    border: 0;
+    cursor: pointer;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  p {
+    margin: 0;
+  }
+
+  svg{
+    display: block;
+  }
+  
+  button[type="button"] {
+    cursor: pointer;
+    background-color: transparent;
+  }
+  
+  a {
+    color: inherit;
+    cursor: pointer;
+  }
+  
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  *, *:after, *:before{
+    box-sizing: border-box;
+  }
+
+  .mr-2 {
+	margin-right: 2px;
+}
+.mr-4 {
+	margin-right: 4px;
+}
+.mr-8 {
+	margin-right: 8px;
+}
+.mr-12 {
+	margin-right: 12px;
+}
+.mr-16 {
+	margin-right: 16px;
+}
+.mr-20 {
+	margin-right: 20px;
+}
+.mr-24 {
+	margin-right: 24px;
+}
+.mr-26 {
+	margin-right: 26px;
+}
+.mr-28 {
+	margin-right: 28px;
+}
+.mr-32 {
+	margin-right: 32px;
+}
+
+.mb-2 {
+	margin-bottom: 2px;
+}
+.mb-4 {
+	margin-bottom: 4px;
+}
+.mb-8 {
+	margin-bottom: 8px;
+}
+.mb-12 {
+	margin-bottom: 12px;
+}
+.mb-16 {
+	margin-bottom: 16px;
+}
+.mb-20 {
+	margin-bottom: 20px;
+}
+.mb-24 {
+	margin-bottom: 24px;
+}
+.mb-26 {
+	margin-bottom: 26px;
+}
+.mb-28 {
+	margin-bottom: 28px;
+}
+.mb-32 {
+	margin-bottom: 32px;
+}
+.mb-36 {
+	margin-bottom: 36px;
+}
+
+.mt-2 {
+	margin-top: 2px;
+}
+.mt-4 {
+	margin-top: 4px;
+}
+.mt-8 {
+	margin-top: 8px;
+}
+.mt-12 {
+	margin-top: 12px;
+}
+.mt-16 {
+	margin-top: 16px;
+}
+.mt-20 {
+	margin: right 20px;
+}
+.mt-24 {
+	margin-top: 24px;
+}
+.mt-26 {
+	margin-top: 26px;
+}
+.mt-28 {
+	margin-top: 28px;
+}
+.mt-32 {
+	margin-top: 32px;
+}
+
+.fl {
+	display: flex;
+}
+.fl-ju-between {
+	display: flex;
+	justify-content: space-between;
+}

@@ -1,0 +1,10 @@
+.comment {
+    display: flex;
+    align-items: center;
+    &__username{
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 22px;
+    }
+}
+

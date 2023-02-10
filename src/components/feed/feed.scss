@@ -1,0 +1,17 @@
+.feed{
+    &__user{
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+
+    }
+    &__username {
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 18px;
+      }
+      &__date{
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.4);
+      }
+}

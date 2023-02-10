@@ -1,0 +1,25 @@
+.stories {
+        display: flex;
+        justify-content: space-between;
+}
+
+.icon{
+    color: #262626;
+    width: 50px;
+}
+
+.feeds{
+    &__list{
+        max-width: 980px;
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+.feed {
+    margin-bottom:24px;
+
+    &:last-child{
+        margin-bottom: 0;
+    }
+}

@@ -1,0 +1,33 @@
+@import "../../global.scss";
+.button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 13px;
+    .icon {
+        color: #212121;
+        width: 10px;
+        transition: 0.5s;
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+    }
+    &.active {
+        .icon {
+            transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+        }
+    }
+
+}
+
+.button__text {
+    margin-right: 5px;
+    color: #292929;
+
+}
