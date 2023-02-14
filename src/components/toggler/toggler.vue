@@ -1,34 +1,33 @@
 <template>
-    <button :class="['button',{ 'active': isOpened }]" @click= "toggle">
-    <span class="button__text">{{isOpened ? "Hide" : "Show"}} issues</span>
+  <button :class="['button', { active: isOpened }]" @click="toggle">
+    <span class="button__text">{{ isOpened ? "Hide" : "Show" }} issues</span>
     <span class="icon">
-    <icon name="triangle"/>
+      <icon name="triangle" />
     </span>
-    </button>
+  </button>
 </template>
 
 <script>
-    import { icon } from "../../icons"
+import { icon } from "../../icons";
 
-    export default {
-        name: "toggler",
-        components: {
-            icon
-        },
-        emits: ["OnToggle"],
-        data () {
-            return {
-            isOpened: false
-            };
-        },
-        methods: {
-            toggle () {
-                this.isOpened = !this.isOpened;
-                this.$emit("onToggle", this.isOpened)
-            }
-        }
+export default {
+  name: "toggler",
+  components: {
+    icon
+  },
+  emits: ["OnToggle"],
+  data () {
+    return {
+      isOpened: false
+    };
+  },
+  methods: {
+    toggle () {
+      this.isOpened = !this.isOpened;
+      this.$emit("onToggle", this.isOpened);
     }
+  }
+};
 </script>
 
-<style src='./toggler.scss'    lang='scss' scoped>
-</style>
+<style src="./toggler.scss" lang="scss" scoped></style>

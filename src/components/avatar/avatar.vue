@@ -12,7 +12,7 @@
       },
       size: {
         type: String,
-        default: "s"
+        default: "none"
       }
     },
     setup (props) {

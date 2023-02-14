@@ -23,3 +23,28 @@
         margin-bottom: 0;
     }
 }
+
+.topline {
+    &__title{
+        font-weight: bold;
+        color:#292929;
+    }
+    &__wrap {
+      display: flex;
+      justify-content: space-around;
+    }
+    &__icon {
+      color: #000;
+      width: 25px;
+      height: 25px;
+    }
+    &__actions {
+      display: flex;
+      align-items: center;
+    }
+    &__avatar {
+      width: 37px;
+      height: 37px;
+    }
+
+  }

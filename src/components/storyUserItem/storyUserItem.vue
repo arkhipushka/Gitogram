@@ -13,6 +13,7 @@ export default {
   components: {
     avatar
   },
+  emits: ["onPress"],
   props: {
     avatar: {
       type: String,

@@ -1,7 +1,7 @@
 <template>
 <div class="feed">
     <div class="feed__user mb-12">
-    <avatar avatar="https://fastly.picsum.photos/id/289/300/300.jpg?hmac=2XboiU-3pVHnqZPSxwkAlievI1nzd-col1FhgcJriAo"
+    <avatar size="s" avatar="https://fastly.picsum.photos/id/289/300/300.jpg?hmac=2XboiU-3pVHnqZPSxwkAlievI1nzd-col1FhgcJriAo"
     class ="feed__avatar mr-16"/>
     <div class="feed__username">josh bosh</div>
     </div>
@@ -45,4 +45,3 @@ export default {
 </script>
 
 <style lang = "scss" src= "./feed.scss" scoped></style>
-<style lang = "scss" src= "../../global.scss" scoped></style>

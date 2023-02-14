@@ -3,10 +3,7 @@ module.exports = {
   env: {
     node: true
   },
-  extends: [
-    "plugin:vue/vue3-essential",
-    "@vue/standard"
-  ],
+  extends: ["plugin:vue/vue3-essential", "@vue/standard", "plugin:storybook/recommended"],
   parserOptions: {
     parser: "@babel/eslint-parser"
   },
@@ -19,15 +16,10 @@ module.exports = {
     "eol-last": 0,
     indent: 0
   },
-  overrides: [
-    {
-      files: [
-        "**/__tests__/*.{j,t}s?(x)",
-        "**/tests/unit/**/*.spec.{j,t}s?(x)"
-      ],
-      env: {
-        jest: true
-      }
+  overrides: [{
+    files: ["**/__tests__/*.{j,t}s?(x)", "**/tests/unit/**/*.spec.{j,t}s?(x)"],
+    env: {
+      jest: true
     }
-  ]
-}
+  }]
+};
