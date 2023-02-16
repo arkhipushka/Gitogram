@@ -10,7 +10,7 @@
         </div>
         <div class="topline__actions">
           <div class="topline__icon mr-28 icon">
-            <icon icon name="home"/>
+            <icon name="home"/>
           </div>
           <div class="topline__avatar mr-24 icon">
             <avatar
@@ -24,10 +24,10 @@
       </template>
             <template #content>
             <ul class="stories">
-            <li class="stories-item" v-for= "story in stories" :key="story.id">
+            <li class="stories-item" v-for= "item in items.slice(0,9)" :key="item.id">
                 <story-user-item
-            :avatar = "story.avatar"
-            :username = "story.username"
+                :avatar="item.owner.avatar_url"
+                :username="item.owner.login"
                 />
             </li>
             </ul>
@@ -37,10 +37,16 @@
     <div class="feeds">
         <div class="x-conatiner">
             <ul class="feeds__list">
-            <li class="feeds__item feed" v-for= "(item, ndx) in 5" :key="ndx">
-            <feed>
+            <li class="feeds__item feed" v-for= "item  in items" :key="item.id">
+            <feed
+            :username="item.owner.login"
+            :avatar="item.owner.avatar_url">
             <template #card>
-            <card title="VUE.JS" desc="Important framework" :stars = "156" :forks = "100"/>
+            <card class="feeds__card"
+            :title="item.name"
+            :desc="item.description"
+            :stars="item.stargazers_count"
+            :forks="item.forks"/>
             </template>
             </feed>
             </li>
@@ -56,7 +62,7 @@ import { card } from "../../components/card";
 import { avatar } from "../../components/avatar";
 import { feed } from "../..//components/feed";
 import { icon } from "../../icons";
-import stories from "./data.json"
+import * as api from "../../api"
     export default {
     name: "feeds",
     components: {
@@ -69,10 +75,29 @@ import stories from "./data.json"
     },
     data () {
         return {
-            stories,
-            avatar
+            avatar,
+            items: []
         }
+    },
+    methods: {
+    getFeedData (item) {
+      return {
+        title: item.name,
+        description: item.description,
+        username: item.owner.login,
+        stars: item.stargazers_count,
+        forks: item.forks
+      }
     }
+  },
+    async created () {
+    try {
+      const { data } = await api.trendings.getTrendings()
+      this.items = data.items
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 </script>
 

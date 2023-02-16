@@ -1,0 +1,31 @@
+@import "../../global.scss";
+
+.c-progress {
+    height: 2px;
+    background: rgba(49, 174, 84, 0.3);
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    &.active {
+        .indicator {
+            width: 100%;
+        }
+    }
+}
+
+.indicator {
+    position: absolute;
+    background: #31AE54;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 0;
+    bottom: 0;
+    transition: 5s;
+}
+
+
