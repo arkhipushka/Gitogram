@@ -1,31 +1,26 @@
 <template>
-  <div class="c-progress mb-12" :class="{ active }">
-    <div ref="indicator" class="indicator" />
+  <div class="c-progress mb-12" :class="{ active } " >
+    <div class="indicator" ref="indicator"></div>
   </div>
 </template>
-  <script>
-  export default {
-    data () {
-      return {
-        active: false
-      }
-    },
-    emits: ["onFinish"],
-    methods: {
-    emitOnFinish () {
-      this.$emit("onFinish")
+
+<script>
+export default {
+  props: {
+    active: Boolean
+  },
+  methods: {
+    emitFinishEvent () {
+      this.$emit("onFinish");
     }
   },
-    mounted () {
-      setTimeout(() => {
-        this.active = true
-      }, 500)
-      this.$refs.indicator.addEventListener("transitionend", this.emitOnFinish)
+  mounted () {
+    this.$refs.indicator.addEventListener("transitionend", this.emitFinishEvent);
   },
   beforeUnmount () {
-    this.$refs.indicator.removeEventListener("transitionend", this.emitOnFinish)
+    this.$refs.indicator.removeEventListener("transitionend", this.emitFinishEvent);
   }
-}
-
+};
 </script>
-  <style src="./progress.scss" lang="scss" scoped></style>
+
+<style lang="scss" scoped src="./progress.scss"></style>

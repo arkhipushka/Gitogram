@@ -7,7 +7,7 @@
     </div>
     <div class="card__desc_wrap mb-32">
       <div class="card__desc">
-        {{ desc }}
+        {{ description }}
       </div>
     </div>
     <div class="card__stats">
@@ -39,6 +39,11 @@ export default {
     forks: {
       type: Number,
       required: true
+    }
+  },
+  computed: {
+    showStats () {
+      return this.forks > 0 || this.stars > 0;
     }
   }
 };

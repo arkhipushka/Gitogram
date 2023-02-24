@@ -9,25 +9,27 @@
           </h1>
         </div>
         <div class="topline__actions">
-          <div class="topline__icon mr-28 icon">
+          <button class="topline__icon mr-28 icon"  @click="$router.push({ name: 'feeds' })">
             <icon name="home"/>
-          </div>
-          <div class="topline__avatar mr-24 icon">
+          </button>
+          <div class="topline__avatar mr-24 icon" @click="$router.push({ name: 'user' })">
             <avatar
-              avatar="https://fastly.picsum.photos/id/940/300/300.jpg?hmac=9fo8dMC0l9QtPjyCC143w0baGIDuMbaTh5O6KkrjGO8"
+              v-if="user.avatar_url"
+              :avatar="user.avatar_url"
             />
           </div>
-          <div class="topline__icon mt-8 icon">
+          <div class="topline__icon mt-8 icon" @click="logout">
             <icon name="exit"/>
           </div>
         </div>
       </template>
             <template #content>
             <ul class="stories">
-            <li class="stories-item" v-for= "item in items.slice(0,9)" :key="item.id">
+            <li class="stories-item" v-for= "{ id, owner } in trendings.slice(0.9)" :key="id">
                 <story-user-item
-                :avatar="item.owner.avatar_url"
-                :username="item.owner.login"
+                :avatar="owner.avatar_url"
+                :username="owner.login"
+                @onPress="$router.push({name: 'stories', params: {initialSlide: id}})"
                 />
             </li>
             </ul>
@@ -37,32 +39,48 @@
     <div class="feeds">
         <div class="x-conatiner">
             <ul class="feeds__list">
-            <li class="feeds__item feed" v-for= "item  in items" :key="item.id">
+            <li class="feeds__item feed" v-for= "{
+            id,
+            name,
+            owner,
+            description,
+            stargazers_count,
+            forks,
+            issues,
+            created_at,
+          } in starred" :key="id">
             <feed
-            :username="item.owner.login"
-            :avatar="item.owner.avatar_url">
+            :username="owner.login"
+            :avatar="owner.avatar_url"
+            :issues="issues?.data"
+            :date="new Date(created_at)"
+            :loading="issues?.loading"
+            @loadContent="loadIssues({ id, owner: owner.login, repo: name })"
+            >
+
             <template #card>
             <card class="feeds__card"
-            :title="item.name"
-            :desc="item.description"
-            :stars="item.stargazers_count"
-            :forks="item.forks"/>
+            :title="name"
+            :description="description"
+            :stars="stargazers_count"
+            :forks="forks"/>
             </template>
             </feed>
             </li>
             </ul>
         </div>
     </div>
-  </template>
+</template>
 
 <script>
+import { mapActions, mapState, mapGetters } from "vuex"
+
 import { topline } from "../../components/topline"
 import { storyUserItem } from "../../components/storyUserItem";
 import { card } from "../../components/card";
 import { avatar } from "../../components/avatar";
 import { feed } from "../..//components/feed";
 import { icon } from "../../icons";
-import * as api from "../../api"
     export default {
     name: "feeds",
     components: {
@@ -73,32 +91,38 @@ import * as api from "../../api"
         icon,
         avatar
     },
-    data () {
-        return {
-            avatar,
-            items: []
-        }
-    },
+    computed: {
+    ...mapState({
+      trendings: (state) => state.trendings.data,
+      user: (state) => state.user.data,
+      starred: (state) => state.starred.data
+    }),
+    ...mapGetters(["getUnstarredOnly"])
+  },
     methods: {
-    getFeedData (item) {
-      return {
-        title: item.name,
-        description: item.description,
-        username: item.owner.login,
-        stars: item.stargazers_count,
-        forks: item.forks
-      }
+    ...mapActions({
+      fetchTrendings: "trendings/fetchTrendings",
+      fetchStarred: "starred/fetchStarred",
+      fetchIssues: "starred/fetchIssuesForRepo"
+    }),
+    loadIssues ({ id, owner, repo }) {
+      this.fetchIssues({ id, owner, repo });
+    },
+    ...mapActions({
+      logoutAction: "auth/logout",
+      getUser: "user/getUser"
+    }),
+    logout () {
+      localStorage.removeItem("token");
+      this.$router.replace({ name: "auth" });
+      window.location.reload();
     }
   },
-    async created () {
-    try {
-      const { data } = await api.trendings.getTrendings()
-      this.items = data.items
-    } catch (error) {
-      console.log(error)
-    }
+  mounted () {
+    this.fetchTrendings();
+    this.fetchStarred({ limit: 10 });
   }
-}
+    }
 </script>
 
 <style lang ="scss" src="./feeds.scss" scoped></style>

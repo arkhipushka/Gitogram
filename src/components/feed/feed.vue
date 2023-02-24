@@ -9,16 +9,17 @@
     </div>
     <div class="feed__toggler">
       <toggler @onToggle="showComment" class="mb-12" />
-      <ul v-if="isShowComments" class="feed__comment-list">
-        <li class="feed__comment-item comment" v-for="elem in 5" :key="elem">
-          <comment
-            username="joshua_l"
-            text="Enable performance measuring in production, at the user's request"
-          />
-        </li>
-      </ul>
     </div>
-    <div class="feed__date">15 may</div>
+    <div class="comments__container">
+      <ul v-if="issues?.length && listShown" class="feed__comment-list">
+          <li class="feed__comment-item comment" v-for="issue in issues" :key="issue.id">
+            <comment
+            :username="issue.user.login" :text="issue.title"
+            />
+          </li>
+        </ul>
+    </div>
+    <div class="feed__date">{{ humanReadableDate }}</div>
   </div>
 </template>
 
@@ -40,17 +41,33 @@ export default {
     avatar: {
       type: String,
       default: "https://picsum.photos/300/300"
+    },
+    issues: {
+      type: Array,
+      default: () => []
+    },
+    date: {
+      type: Date,
+      required: true
     }
   },
   data () {
     return {
-      isShowComments: false
+      listShown: false
     };
   },
+  computed: {
+    humanReadableDate () {
+      const date = new Date(this.date);
+      return date.toLocaleString("en-EN", { month: "short", day: "numeric" });
+    }
+  },
   methods: {
-    showComment (state) {
-      this.isShowComments = state;
-      console.log(state);
+    handleToggle (isOpened) {
+      this.listShown = isOpened;
+      if (isOpened && this.issues.length === 0) {
+        this.$emit("loadContent");
+      }
     }
   }
 };

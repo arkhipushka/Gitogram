@@ -1,6 +1,6 @@
 <template>
     <div class="avatar" :style="avatarStyle">
-      <img :src="avatar" alt="users avatar" />
+      <img :src="avatar" alt="users avatar"/>
     </div>
   </template>
   <script>

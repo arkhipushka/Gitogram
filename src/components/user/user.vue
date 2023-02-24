@@ -1,8 +1,8 @@
 <template>
     <div class="user">
-        <avatar class="user__avatar mr-16" :size="size" avatar="http://www.myptzone.com/assets/1/18/placeholder_male.png?9"></avatar>
+        <avatar class="user__avatar mr-16" :size="size" :avatar="src"></avatar>
     <div>
-        <div class="user__name">{{ name }}</div>
+        <div class="user__name">{{ username }}</div>
     </div>
     </div>
 </template>
@@ -17,7 +17,7 @@ export default {
         type: String,
         default: "http://www.myptzone.com/assets/1/18/placeholder_male.png?9"
     },
-        name: {
+        username: {
         type: String,
         default: "React.reposit"
     },

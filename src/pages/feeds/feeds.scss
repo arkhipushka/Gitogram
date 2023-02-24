@@ -1,11 +1,17 @@
 .stories {
         display: flex;
         justify-content: space-between;
+        overflow: visible;
+}
+
+.stories-item{
+  overflow: auto;
 }
 
 .icon{
     color: #262626;
     width: 50px;
+    cursor: pointer;
 }
 
 .feeds{

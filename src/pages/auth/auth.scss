@@ -1,0 +1,39 @@
+.c-auth {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .logo {
+    margin-bottom: 36px;
+    &__title{
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 30px;
+        color:#292929;
+    }
+    &__desc{
+        text-align: center;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        color: #6F6F6F;
+    }
+  }
+  
+  .auth-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .button-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .button-text {
+    margin-right: 12px;
+  }

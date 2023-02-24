@@ -1,21 +1,35 @@
 <template>
-  <button>
-    <span class="text">{{text}}</span>
-    <span class="hover-text">{{hoverText}}</span>
+  <button  :class="[ 'c-button', {loading}, {disabled}, `theme-${theme}`]">
+    <span class="preloader" v-if="loading">
+      <preloader />
+    </span>
+    <span class="btn-text" v-else>
+      <slot>{{text}}</slot>
+    </span>
   </button>
 </template>
 
 <script>
+import { preloader } from "../preloader"
 export default {
   name: "xButton",
+  components: { preloader },
   props: {
-    text: {
+    loading: {
+      type: Boolean
+    },
+    theme: {
       type: String,
-      default: "Following"
+      default: "white"
+    },
+    disabled: {
+      type: Boolean
     },
     hoverText: {
-      type: String,
-      default: "Unfollow"
+      type: String
+    },
+    rubberish: {
+      type: Boolean
     }
   }
 }
